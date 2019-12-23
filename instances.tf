@@ -51,7 +51,7 @@ resource "aws_instance" "nginx" {
   # copy our mysql_pre script to the remote host
   provisioner "file" {
     source      = "docker/nginx/docker-entrypoint.sh"
-    destination = "/tmp/docker-entrypoint"
+    destination = "/tmp/docker-entrypoint.sh"
   }
 
   # copy our mysql_pre script to the remote host

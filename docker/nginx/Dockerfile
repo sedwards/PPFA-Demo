@@ -12,7 +12,7 @@ ADD nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 #EXPOSE 443
 
-ADD /docker-entrypoint.sh /
+ADD docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
