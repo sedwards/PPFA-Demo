@@ -10,15 +10,16 @@
 
 ### Quickstart:
   1. Modify variables.tf and put in your aws_access_key and aws_secret_key
-  2. Run deploy.sh
+  2. Run deploy.sh (gen-keys, then init, then plan)
+      This is just a wrapper around terraform
 
 ### Help and Commands:
 ```
 usage: deploy <command>
 The most commonly used commands are:
  [requirements]
-   install-tf            - Show terraform state
-   gen-keys              - Should be clear enough
+   install-tf            - Install Terraform if need
+   gen-keys              - Generate SSH Keys for our instances
  [deploy envrionment]
    init                  - init terraform
    plan                  - execute terraform plan
