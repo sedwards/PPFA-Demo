@@ -71,8 +71,8 @@ The most commonly used commands are:
 ```
 
 ### Important TODO
-  - Read more of the recent Terraform documentation and fix passing in the keys as variables... 
-  - Pass the s3 bucket name in as a variable, so we can have multiple copies of this stack running
+  - Read more of the recent Terraform documentation and fix passing in the the aws keys as variables... 
+  - Pass the s3 bucket name in as a variable as well, so we can have multiple copies of this stack running
        ...there can be only one my-ppfa-tf-test-bucket.s3-us-west-1.amazonaws.com
   - Also using variables in other places, such as for the internal IP addresses would be good
   - A lot of stuff is hard-coded, the point here is to be able to replicate it over and over
@@ -92,8 +92,7 @@ The most commonly used commands are:
  - Logically, it would be better to provision django, then nginx, then haproxy to follow the flow from backend to front-end
      but I'm committed now. Should re-order this later and switch the IPs around
 
- - I couldn't remember the terraform syntax for passing in variabes
-     Step 1 above should really be removed/replaced in a future iteration 
+ - My Terraform-fu is a little rusty, all the hard-coded stuff can be removed/replaced in a future iteration 
 
 #### Examples
 ##### Accessing Stack with request routed Haproxy->Nginx->Django
