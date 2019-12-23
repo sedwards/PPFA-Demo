@@ -36,13 +36,13 @@ resource "aws_security_group" "default" {
   description = "Used in the terraform"
   vpc_id      = "${aws_vpc.default.id}"
 
-  # MySQL Access from the 10 block
-  #ingress {
-  #  from_port   = 3306
-  #  to_port     = 3306
-  #  protocol    = "tcp"
-  #  cidr_blocks = ["10.0.0.0/16"]
-  #}
+  # django Access from the 10 block
+  ingress {
+    from_port   = 8000
+    to_port     = 8000
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
 
   # SSH access from anywhere
   ingress {

@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: nginx 
+    ports:
+      - "80:80"
+
