@@ -129,22 +129,22 @@ resource "aws_instance" "django" {
 
   provisioner "file" {
     source      = "docker/django/docker-compose.yml"
-    destination = "/tmp/install.sh"
+    destination = "/tmp/docker-compose.yml"
   }
 
   provisioner "file" {
     source      = "docker/django/Dockerfile"
-    destination = "/tmp/install.sh"
+    destination = "/tmp/Dockerfile"
   }
 
   provisioner "file" {
     source      = "docker/django/requirements.txt"
-    destination = "/tmp/install.sh"
+    destination = "/tmp/requirements.txt"
   }
 
   provisioner "file" {
     source      = "docker/django/tinyapp.py"
-    destination = "/tmp/install.sh"
+    destination = "/tmp/tinyapp.py"
   }
 
   # We run a remote provisioner on the instance after creating it.
