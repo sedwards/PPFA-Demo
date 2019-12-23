@@ -17,5 +17,5 @@ sudo chmod +x /usr/local/bin/docker-compose
 # FIXME: We should really do this elsewhere in a future iteration
 cd /tmp
 
-docker-compose up -d
+/usr/local/bin/docker-compose up -d
 

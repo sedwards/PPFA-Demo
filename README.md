@@ -44,6 +44,10 @@ The most commonly used commands are:
 │       ├── Dockerfile
 │       └── nginx.conf
 ├── documentation
+│   ├── Haproxy-to-nginx-django.png
+│   ├── s3-bucket.png
+│   ├── s3-upload.png
+│   └── static-content-to-s3-bucket.png
 ├── haproxy
 │   ├── haproxy.cfg
 │   └── install.sh
@@ -62,7 +66,8 @@ The most commonly used commands are:
 ├── terraform.tfstate.backup
 └── variables.tf
 
-7 directories, 24 files
+7 directories, 28 files
+
 ```
 
 ### Important TODO
