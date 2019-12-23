@@ -70,10 +70,11 @@ The most commonly used commands are:
 
 ```
 
-### Important TODO
+### FIXME
   - Read more of the recent Terraform documentation and fix passing in the the aws keys as variables... 
   - Pass the s3 bucket name in as a variable as well, so we can have multiple copies of this stack running
        ...there can be only one my-ppfa-tf-test-bucket.s3-us-west-1.amazonaws.com
+  - Check the haproxy and s3 docs to figure out how to render the image rather than downloading it
   - Also using variables in other places, such as for the internal IP addresses would be good
   - A lot of stuff is hard-coded, the point here is to be able to replicate it over and over
 
