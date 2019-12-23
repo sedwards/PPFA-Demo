@@ -95,3 +95,8 @@ The most commonly used commands are:
  - I couldn't remember the terraform syntax for passing in variabes
      Step 1 above should really be removed/replaced in a future iteration 
 
+#### Examples
+  - Accessing Stack with request routed Haproxy->Nginx->Django
+![Accessing Stack Haproxy->Nginx->Django](https://raw.githubusercontent.com/sedwards/PPA-Demo/master/documentation/Haproxy-to-nginx-django.png?token=AAALZCOWXQKAW6OUEU2NY7S6AA4EK)
+  - Serving Static Content from S3 Bucket through haproxy
+![Static File Routed Through haproxy](https://raw.githubusercontent.com/sedwards/PPA-Demo/master/documentation/static-content-to-s3-bucket.png?token=AAALZCLV2ZISUWS5KMOAT526AA4UK)
