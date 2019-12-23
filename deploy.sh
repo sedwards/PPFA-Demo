@@ -1,5 +1,20 @@
 #!/bin/bash
 
+COMMAND="help"
+
+# Options
+while [[ $# -gt 0 ]]
+do
+key="$1"
+  case $key in
+      *)
+      COMMAND="$1"
+      ;;
+  esac
+  shift # past argument or value
+done
+
+
 install_tf () {
   echo "Installing Terraform"
   
@@ -31,11 +46,43 @@ cleanup () {
   rm -fr ssh/*
   terraform destroy
 }
-
-if [[ ! -f "/usr/local/bin/terraform" ]]; then
-  install_tf
-fi
-if [[ ! -f "ssh/terraform.pub" ]]; then
-  generate_ssh_keys
-fi
  
+
+case "$COMMAND" in
+  install-tf)
+    if [[ ! -f "/usr/local/bin/terraform" ]]; then
+      install_tf
+    fi
+    ;;
+  gen-keys)
+    if [[ ! -f "ssh/terraform.pub" ]]; then
+      generate_ssh_keys
+    fi
+    ;;
+  init)
+    terraform init
+    ;;
+  plan)
+    terraform plan
+    ;;
+  cleanup)
+    cleanup "Removing keys and environment"
+    ;;
+  *)
+    echo "
+usage: deploy <command>
+The most commonly used commands are:
+ [requirements]
+   install-tf            - Show terraform state
+   gen-keys              - Should be clear enough
+ [deploy envrionment]
+   init                  - init terraform
+   plan                  - execute terraform plan
+ [housekeeping]
+   cleanup               - terraform destory and remove ssh keys
+"
+  >&2
+    exit 3
+    ;;
+esac
+
