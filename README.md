@@ -26,10 +26,53 @@ The most commonly used commands are:
    cleanup               - terraform destory and remove ssh keys
 ```
 
-### Important TODO
-  - haproxy
+### Structure of Stuff and Things
+```
+[sedwards@homeless PPFA]$ tree
+.
+├── deploy.sh
+├── docker
+│   ├── django
+│   │   ├── docker-compose.yml
+│   │   ├── Dockerfile
+│   │   ├── requirements.txt
+│   │   └── tinyapp.py
+│   ├── install.sh
+│   └── nginx
+│       ├── docker-compose.yml
+│       ├── docker-entrypoint.sh
+│       ├── Dockerfile
+│       └── nginx.conf
+├── documentation
+├── haproxy
+│   ├── haproxy.cfg
+│   └── install.sh
+├── instances.tf
+├── main.tf
+├── README.md
+├── s3.tf
+├── sec_groups.tf
+├── ssh
+│   ├── terraform
+│   ├── terraform.pem
+│   └── terraform.pub
+├── static-content
+│   └── hello.png
+├── terraform.tfstate
+├── terraform.tfstate.backup
+└── variables.tf
 
-### Some NOTES and TODO:
+7 directories, 24 files
+```
+
+### Important TODO
+  - Read more of the recent Terraform documentation and fix passing in the keys as variables... 
+  - Pass the s3 bucket name in as a variable, so we can have multiple copies of this stack running
+       ...there can be only one my-ppfa-tf-test-bucket.s3-us-west-1.amazonaws.com
+  - Also using variables in other places, such as for the internal IP addresses would be good
+  - A lot of stuff is hard-coded, the point here is to be able to replicate it over and over
+
+### Some more misc NOTES and TODO:
  - Security is not that great. 
      We should limit the inbound SSH to a jump host or your address
 
@@ -41,7 +84,9 @@ The most commonly used commands are:
 
  - I am just throwing the files in to the containers on docker build, it would be better to mount the volumes
 
- - I couldn't remember the terraform syntax for passing in variabes
-     Step 1 above should really be removed/replaced in a future iteration
+ - Logically, it would be better to provision django, then nginx, then haproxy to follow the flow from backend to front-end
+     but I'm committed now. Should re-order this later and switch the IPs around
 
+ - I couldn't remember the terraform syntax for passing in variabes
+     Step 1 above should really be removed/replaced in a future iteration 
 

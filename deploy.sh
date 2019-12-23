@@ -43,8 +43,8 @@ generate_ssh_keys () {
 }
 
 cleanup () {
-  rm -fr ssh/*
   terraform destroy
+  rm -fr ssh/*
 }
  
 
@@ -65,6 +65,9 @@ case "$COMMAND" in
   plan)
     terraform plan
     ;;
+  apply)
+    terraform apply
+    ;;
   cleanup)
     cleanup "Removing keys and environment"
     ;;
@@ -78,6 +81,7 @@ The most commonly used commands are:
  [deploy envrionment]
    init                  - init terraform
    plan                  - execute terraform plan
+   apply                 - execute terraform apply
  [housekeeping]
    cleanup               - terraform destory and remove ssh keys
 "
