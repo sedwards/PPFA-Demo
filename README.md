@@ -81,18 +81,13 @@ The most commonly used commands are:
 ### Some more misc NOTES and TODO:
  - Security is not that great. 
      We should limit the inbound SSH to a jump host or your address
-
  - As above, I only used one security group for both backend services during POC. 
      They should be split
-
  - There is no SSL configured on this example. 
      Using something like LetsEncrypt would be better. An exmple of this was added to nginx.conf but not enabled due to time
-
  - I am just throwing the files in to the containers on docker build, it would be better to mount the volumes
-
  - Logically, it would be better to provision django, then nginx, then haproxy to follow the flow from backend to front-end
      but I'm committed now. Should re-order this later and switch the IPs around
-
  - My Terraform-fu is a little rusty, all the hard-coded stuff can be removed/replaced in a future iteration 
 
 #### Examples
