@@ -5,8 +5,9 @@ resource "aws_instance" "nginx" {
     # The default username for our AMI
     type = "ssh"
     user = "ec2-user"
+    host = "${self.public_ip}"
 
-    private_key = "${file("terraform.pem")}"
+    private_key = "${file("ssh/terraform.pem")}"
     timeout = "5m"
     agent = false
     # The connection will use the local SSH agent for authentication.
@@ -88,9 +89,10 @@ resource "aws_instance" "django" {
   connection {
     # The default username for our AMI
     type = "ssh"
+    host = "${self.public_ip}" 
     user = "ec2-user"
 
-    private_key = "${file("terraform.pem")}"
+    private_key = "${file("ssh/terraform.pem")}"
     timeout = "5m"
     agent = false
     # The connection will use the local SSH agent for authentication.
@@ -168,9 +170,10 @@ resource "aws_instance" "haproxy" {
   connection {
     # The default username for our AMI
     type = "ssh"
+    host = "${self.public_ip}"
     user = "ec2-user"
 
-    private_key = "${file("terraform.pem")}"
+    private_key = "${file("ssh/terraform.pem")}"
     timeout = "5m"
     agent = false
     # The connection will use the local SSH agent for authentication.
