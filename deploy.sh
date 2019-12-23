@@ -76,12 +76,11 @@ case "$COMMAND" in
 usage: deploy <command>
 The most commonly used commands are:
  [requirements]
-   install-tf            - Show terraform state
-   gen-keys              - Should be clear enough
+   install-tf            - Install Terraform if need
+   gen-keys              - Generate SSH Keys for our instances
  [deploy envrionment]
    init                  - init terraform
    plan                  - execute terraform plan
-   apply                 - execute terraform apply
  [housekeeping]
    cleanup               - terraform destory and remove ssh keys
 "
