@@ -13,3 +13,9 @@ sudo service docker restart
 sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
+# Ensure we are in the right place
+# FIXME: We should really do this elsewhere in a future iteration
+cd /tmp
+
+docker-compose up -d
+

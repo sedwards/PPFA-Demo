@@ -14,7 +14,6 @@ Quickstart:
 
 Important TODO
   - haproxy
-  - EIP
 
 Some NOTES and TODO:
  - Security is not that great. 

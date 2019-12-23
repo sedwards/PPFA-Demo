@@ -36,18 +36,50 @@ resource "aws_instance" "nginx" {
   }
 
   # copy our mysql_pre script to the remote host 
-  #provisioner "file" {
-  #  source      = "docker/install.sh"
-  #  destination = "/tmp/install.sh"
-  #}
+  provisioner "file" {
+    source      = "docker/install.sh"
+    destination = "/tmp/install.sh"
+  }
 
-  #provisioner "remote-exec" {
-  #  inline = [
-  #    "sudo apt-get -y update",
-  #    "sudo apt-get -y install nginx",
-  #    "sudo service nginx start",
-  #  ]
-  #}
+  # copy our mysql_pre script to the remote host
+  provisioner "file" {
+    source      = "docker/nginx/docker-compose.yml"
+    destination = "/tmp/docker-compose.yml"
+  }
+
+  # copy our mysql_pre script to the remote host
+  provisioner "file" {
+    source      = "docker/nginx/docker-entrypoint.sh"
+    destination = "/tmp/docker-entrypoint"
+  }
+
+  # copy our mysql_pre script to the remote host
+  provisioner "file" {
+    source      = "docker/nginx/Dockerfile"
+    destination = "/tmp/Dockerfile"
+  }
+
+  # copy our mysql_pre script to the remote host
+  provisioner "file" {
+    source      = "docker/nginx/nginx.conf"
+    destination = "/tmp/nginx.conf"
+  }
+
+  # We run a remote provisioner on the instance after creating it.
+  # In this case, we just install django, a simple app and start it. By default,
+  # this should be on port 8000
+  provisioner "remote-exec" {
+    inline = [
+      "sudo chmod +x /tmp/install.sh",
+    ]
+  }
+
+  # install docker and friends
+  provisioner "remote-exec" {
+    inline = [
+      "sudo sh /tmp/install.sh",
+    ]
+  }
 }
 
 resource "aws_instance" "django" {
@@ -88,47 +120,46 @@ resource "aws_instance" "django" {
     Name = "django"
   }
 
+  provisioner "file" {
+    source      = "docker/install.sh"
+    destination = "/tmp/install.sh"
+  }
+
+  provisioner "file" {
+    source      = "docker/django/docker-compose.yml"
+    destination = "/tmp/install.sh"
+  }
+
+  provisioner "file" {
+    source      = "docker/django/Dockerfile"
+    destination = "/tmp/install.sh"
+  }
+
+  provisioner "file" {
+    source      = "docker/django/requirements.txt"
+    destination = "/tmp/install.sh"
+  }
+
+  provisioner "file" {
+    source      = "docker/django/tinyapp.py"
+    destination = "/tmp/install.sh"
+  }
+
   # We run a remote provisioner on the instance after creating it.
-  # In this case, we just install nginx and start it. By default,
-  # this should be on port 80
-  #provisioner "remote-exec" {
-  #  inline = [
-  #    "sudo chmod +x /tmp/mysql_pre.sh",
-  #    "sudo chmod +x /tmp/mysql_post.sh",
-  #    "sudo chmod +x /tmp/mysql_wp_setup.sh",
-  #  ]
-  #}
+  # In this case, we just install django, a simple app and start it. By default,
+  # this should be on port 8000
+  provisioner "remote-exec" {
+    inline = [
+      "sudo chmod +x /tmp/install.sh",
+    ]
+  }
 
-  # Answer yes
-  #provisioner "remote-exec" {
-  #  inline = [
-  #    "sudo sh /tmp/mysql_pre.sh",
-  #  ]
-  #}
-
-  # Install mysql
-  #provisioner "remote-exec" {
-  #  inline = [
-  #    "sudo apt-get -y update",
-  #    "sudo apt-get install -y mysql-server",
-  #  ]
-  #}
-
-  # Setup mysql
-  #provisioner "remote-exec" {
-  #  inline = [
-  #    "sudo sh /tmp/mysql_post.sh",
-  #    "sudo ufw allow 3306",
-  #  ]
-  #}
-
-  # provision WP db
-  #provisioner "remote-exec" {
-  #  inline = [
-  #    "sudo sh /tmp/mysql_wp_setup.sh",
-  #  ]
-  #}
-
+  # install docker and friends
+  provisioner "remote-exec" {
+    inline = [
+      "sudo sh /tmp/install.sh",
+    ]
+  }
 }
 
 resource "aws_instance" "haproxy" {
@@ -169,15 +200,26 @@ resource "aws_instance" "haproxy" {
     Name = "HAProxy"
   }
 
+  # copy our install script
+  provisioner "file" {
+    source      = "haproxy/install.sh"
+    destination = "/tmp/install.sh"
+  }
+
+  # copy our haproxy config to the remote host
+  provisioner "file" {
+    source      = "haproxy/haproxy.cfg"
+    destination = "/tmp/haproxy.cfg"
+  }
+
   # We run a remote provisioner on the instance after creating it.
-  # In this case, we just install nginx and start it. By default,
   # this should be on port 80
-  #provisioner "remote-exec" {
-  #  inline = [
-  #    "sudo apt-get -y update",
-  #    "sudo apt-get install -y haproxy",
-  #  ]
-  #}
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/install.sh",
+      "sh /tmp/install.sh",
+    ]
+  }
 }
 
 resource "aws_eip" "lb" {
