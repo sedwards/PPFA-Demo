@@ -2,6 +2,10 @@ Quickstart:
   1. Modify variables.tf and put in your aws_access_key and aws_secret_key
   2. Run deploy.sh
 
+Important TODO
+  - haproxy
+  - EIP
+
 Some NOTES and TODO:
  - Security is not that great. 
      We should limit the inbound SSH to a jump host or your address
